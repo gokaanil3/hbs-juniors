@@ -160,15 +160,6 @@ function DaysPage() {
       <h1>DAYS</h1>
       <h2>We want you to See all our activities</h2>
 
-      <section className="day-preview-grid">
-        {dayPhotos.map((day, index) => (
-          <article key={`${day.name}-preview`} className={`day-preview-card ${activeDay === index ? 'active' : ''}`}>
-            <img src={day.photos[0]} alt={`${day.name} preview`} />
-            <p>{day.name}</p>
-          </article>
-        ))}
-      </section>
-
       <section className={`day-gallery-shell ${activeDay === null ? 'locked' : ''}`}>
         <div className="day-gallery-header">
           <h3>{activeDay === null ? 'Main Photo Box (Gift Wrapped)' : `${dayPhotos[activeDay].name} Photos`}</h3>
