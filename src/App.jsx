@@ -154,6 +154,24 @@ function DaysPage() {
       <h1>DAYS</h1>
       <h2>We want you to See all our activities</h2>
 
+      <section className="day-preview-grid">
+        {dayPhotos.map((day, index) => (
+          <article
+            key={`${day.name}-preview`}
+            className={`day-preview-card ${activeDay === index ? 'active' : 'locked'}`}
+          >
+            <img src={day.photos[0]} alt={`${day.name} preview`} />
+            {activeDay !== index && (
+              <div className="gift-wrap-overlay">
+                <span>Gift Wrapped</span>
+                <small>Click {day.name} below to open</small>
+              </div>
+            )}
+            <p>{day.name}</p>
+          </article>
+        ))}
+      </section>
+
       <section className="day-gallery-shell">
         <div className="day-gallery-header">
           <h3>{dayPhotos[activeDay].name} Photos</h3>

@@ -245,6 +245,81 @@
   color: #70f0e4;
 }
 
+.day-preview-grid {
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.day-preview-card {
+  background: #0f131c;
+  border: 2px solid #232a3d;
+  border-radius: 14px;
+  padding: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.day-preview-card img {
+  width: 100%;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+  transition: filter 0.25s ease, transform 0.25s ease;
+}
+
+.day-preview-card p {
+  margin: 8px 0 2px;
+  text-align: center;
+  color: #d8e3ff;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.day-preview-card.locked img {
+  filter: blur(2px) brightness(0.6);
+}
+
+.day-preview-card.active {
+  border-color: #8f7bff;
+  box-shadow: 0 0 0 2px rgba(143, 123, 255, 0.3), 0 0 18px rgba(143, 123, 255, 0.25);
+}
+
+.day-preview-card.active img {
+  transform: scale(1.03);
+}
+
+.gift-wrap-overlay {
+  position: absolute;
+  inset: 8px 8px 30px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 4px;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(143, 123, 255, 0.3) 0 10px,
+      rgba(57, 243, 226, 0.24) 10px 20px
+    ),
+    rgba(8, 12, 22, 0.45);
+  color: #eff3ff;
+  text-align: center;
+  padding: 8px;
+}
+
+.gift-wrap-overlay span {
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.gift-wrap-overlay small {
+  font-size: 0.7rem;
+}
+
 .day-gallery-shell {
   margin-top: 26px;
   background: #0f131c;
@@ -252,6 +327,9 @@
   border-radius: 18px;
   padding: 16px;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+  width: min(560px, 100%);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .day-gallery-header {
@@ -283,7 +361,7 @@
 
 .day-gallery-box img {
   width: 100%;
-  height: clamp(220px, 42vw, 460px);
+  height: clamp(180px, 30vw, 300px);
   object-fit: cover;
   display: block;
 }
@@ -671,6 +749,10 @@ button:active,
 
   .day-gallery-controls {
     flex-wrap: wrap;
+  }
+
+  .day-preview-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
