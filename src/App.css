@@ -245,11 +245,79 @@
   color: #70f0e4;
 }
 
+.day-gallery-shell {
+  margin-top: 26px;
+  background: #0f131c;
+  border: 2px solid #232a3d;
+  border-radius: 18px;
+  padding: 16px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+}
+
+.day-gallery-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.day-gallery-header h3 {
+  margin: 0;
+  color: #9bafff;
+  font-size: 1.1rem;
+}
+
+.day-gallery-header span {
+  color: #95fff4;
+  font-weight: 700;
+}
+
+.day-gallery-box {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 2px solid #26324b;
+  background: #080b12;
+}
+
+.day-gallery-box img {
+  width: 100%;
+  height: clamp(220px, 42vw, 460px);
+  object-fit: cover;
+  display: block;
+}
+
+.day-gallery-controls {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.day-gallery-controls button {
+  border: none;
+  background: var(--accent-soft);
+  color: #a0fff6;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  animation: buttonPulse 2.2s ease-in-out infinite;
+}
+
+.day-gallery-controls button:hover {
+  background: #2f5363;
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 0 0 2px rgba(57, 215, 201, 0.24);
+}
+
 .day-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
   gap: 16px;
-  margin-top: 28px;
+  margin-top: 18px;
 }
 
 .day-card {
@@ -276,6 +344,13 @@
   background: #1b2640;
   border-color: #7c8cff;
   box-shadow: 0 0 0 2px rgba(124, 140, 255, 0.25);
+}
+
+.day-card.active {
+  background: #1b2640;
+  border-color: #8f7bff;
+  color: #ecf0ff;
+  box-shadow: 0 0 0 2px rgba(143, 123, 255, 0.35), 0 0 20px rgba(143, 123, 255, 0.22);
 }
 
 .modal-overlay {
@@ -586,6 +661,15 @@ button:active,
   }
 
   .modal-controls {
+    flex-wrap: wrap;
+  }
+
+  .day-gallery-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .day-gallery-controls {
     flex-wrap: wrap;
   }
 }

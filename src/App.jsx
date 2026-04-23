@@ -98,29 +98,10 @@ function HomePage() {
   )
 }
 
-function GalleryModal({ photos, currentIndex, onNext, onPrev, onClose }) {
-  return (
-    <div className="modal-overlay" role="dialog" aria-modal="true">
-      <div className="modal-content">
-        <button className="close-btn" onClick={onClose} aria-label="Close gallery">
-          Close
-        </button>
-        <img src={photos[currentIndex]} alt={`Day activity ${currentIndex + 1}`} className="modal-image" />
-        <div className="modal-controls">
-          <button onClick={onPrev}>Previous</button>
-          <span>
-            {currentIndex + 1} / {photos.length}
-          </span>
-          <button onClick={onNext}>Next</button>
-        </div>
-      </div>
-    </div>
-  )
-}
-
 function DaysPage() {
-  const [activeDay, setActiveDay] = useState(null)
+  const [activeDay, setActiveDay] = useState(0)
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [touchStartX, setTouchStartX] = useState(null)
 
   const dayPhotos = useMemo(
     () =>
@@ -131,15 +112,10 @@ function DaysPage() {
     [],
   )
 
-  const activePhotos = activeDay !== null ? dayPhotos[activeDay].photos : []
+  const activePhotos = dayPhotos[activeDay].photos
 
-  const openGallery = (dayIndex) => {
+  const changeDay = (dayIndex) => {
     setActiveDay(dayIndex)
-    setCurrentIndex(0)
-  }
-
-  const closeGallery = () => {
-    setActiveDay(null)
     setCurrentIndex(0)
   }
 
@@ -151,28 +127,62 @@ function DaysPage() {
     setCurrentIndex((prev) => (prev - 1 + activePhotos.length) % activePhotos.length)
   }
 
+  const onTouchStart = (event) => {
+    setTouchStartX(event.changedTouches[0].clientX)
+  }
+
+  const onTouchEnd = (event) => {
+    if (touchStartX === null) {
+      return
+    }
+
+    const touchEndX = event.changedTouches[0].clientX
+    const delta = touchStartX - touchEndX
+    const swipeThreshold = 45
+
+    if (delta > swipeThreshold) {
+      goNext()
+    } else if (delta < -swipeThreshold) {
+      goPrev()
+    }
+
+    setTouchStartX(null)
+  }
+
   return (
     <main className="page days-page">
       <h1>DAYS</h1>
       <h2>We want you to See all our activities</h2>
 
+      <section className="day-gallery-shell">
+        <div className="day-gallery-header">
+          <h3>{dayPhotos[activeDay].name} Photos</h3>
+          <span>
+            {currentIndex + 1} / {activePhotos.length}
+          </span>
+        </div>
+
+        <div className="day-gallery-box" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+          <img src={activePhotos[currentIndex]} alt={`${dayPhotos[activeDay].name} activity ${currentIndex + 1}`} />
+        </div>
+
+        <div className="day-gallery-controls">
+          <button onClick={goPrev}>Previous</button>
+          <button onClick={goNext}>Next</button>
+        </div>
+      </section>
+
       <section className="day-grid">
         {dayPhotos.map((day, index) => (
-          <button key={day.name} className="day-card" onClick={() => openGallery(index)}>
+          <button
+            key={day.name}
+            className={`day-card ${activeDay === index ? 'active' : ''}`}
+            onClick={() => changeDay(index)}
+          >
             <span>{day.name}</span>
           </button>
         ))}
       </section>
-
-      {activeDay !== null && (
-        <GalleryModal
-          photos={activePhotos}
-          currentIndex={currentIndex}
-          onNext={goNext}
-          onPrev={goPrev}
-          onClose={closeGallery}
-        />
-      )}
     </main>
   )
 }
