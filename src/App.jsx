@@ -99,7 +99,7 @@ function HomePage() {
 }
 
 function DaysPage() {
-  const [activeDay, setActiveDay] = useState(0)
+  const [activeDay, setActiveDay] = useState(null)
   const [currentIndex, setCurrentIndex] = useState(0)
   const [touchStartX, setTouchStartX] = useState(null)
 
@@ -112,7 +112,7 @@ function DaysPage() {
     [],
   )
 
-  const activePhotos = dayPhotos[activeDay].photos
+  const activePhotos = activeDay !== null ? dayPhotos[activeDay].photos : []
 
   const changeDay = (dayIndex) => {
     setActiveDay(dayIndex)
@@ -120,10 +120,16 @@ function DaysPage() {
   }
 
   const goNext = () => {
+    if (activePhotos.length === 0) {
+      return
+    }
     setCurrentIndex((prev) => (prev + 1) % activePhotos.length)
   }
 
   const goPrev = () => {
+    if (activePhotos.length === 0) {
+      return
+    }
     setCurrentIndex((prev) => (prev - 1 + activePhotos.length) % activePhotos.length)
   }
 
@@ -156,38 +162,42 @@ function DaysPage() {
 
       <section className="day-preview-grid">
         {dayPhotos.map((day, index) => (
-          <article
-            key={`${day.name}-preview`}
-            className={`day-preview-card ${activeDay === index ? 'active' : 'locked'}`}
-          >
+          <article key={`${day.name}-preview`} className={`day-preview-card ${activeDay === index ? 'active' : ''}`}>
             <img src={day.photos[0]} alt={`${day.name} preview`} />
-            {activeDay !== index && (
-              <div className="gift-wrap-overlay">
-                <span>Gift Wrapped</span>
-                <small>Click {day.name} below to open</small>
-              </div>
-            )}
             <p>{day.name}</p>
           </article>
         ))}
       </section>
 
-      <section className="day-gallery-shell">
+      <section className={`day-gallery-shell ${activeDay === null ? 'locked' : ''}`}>
         <div className="day-gallery-header">
-          <h3>{dayPhotos[activeDay].name} Photos</h3>
-          <span>
-            {currentIndex + 1} / {activePhotos.length}
-          </span>
+          <h3>{activeDay === null ? 'Main Photo Box (Gift Wrapped)' : `${dayPhotos[activeDay].name} Photos`}</h3>
+          {activeDay !== null && (
+            <span>
+              {currentIndex + 1} / {activePhotos.length}
+            </span>
+          )}
         </div>
 
         <div className="day-gallery-box" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
-          <img src={activePhotos[currentIndex]} alt={`${dayPhotos[activeDay].name} activity ${currentIndex + 1}`} />
+          <img
+            src={activeDay === null ? dayPhotos[0].photos[0] : activePhotos[currentIndex]}
+            alt={activeDay === null ? 'Gift wrapped main gallery' : `${dayPhotos[activeDay].name} activity ${currentIndex + 1}`}
+          />
+          {activeDay === null && (
+            <div className="main-gift-wrap">
+              <span>Gift Wrapped Gallery</span>
+              <small>Press Day 1 / Day 2 / Day 3 / Day 4 / Day 5 to open</small>
+            </div>
+          )}
         </div>
 
-        <div className="day-gallery-controls">
-          <button onClick={goPrev}>Previous</button>
-          <button onClick={goNext}>Next</button>
-        </div>
+        {activeDay !== null && (
+          <div className="day-gallery-controls">
+            <button onClick={goPrev}>Previous</button>
+            <button onClick={goNext}>Next</button>
+          </div>
+        )}
       </section>
 
       <section className="day-grid">
