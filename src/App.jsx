@@ -126,7 +126,6 @@ function DaysPage() {
     () =>
       Array.from({ length: 5 }, (_, day) => ({
         name: `Day ${day + 1}`,
-        emoji: ['🧩', '🎨', '🎵', '⚽', '📖'][day],
         photos: CUSTOM_DAY_PHOTOS[day],
       })),
     [],
@@ -160,7 +159,6 @@ function DaysPage() {
       <section className="day-grid">
         {dayPhotos.map((day, index) => (
           <button key={day.name} className="day-card" onClick={() => openGallery(index)}>
-            <span className="day-emoji">{day.emoji}</span>
             <span>{day.name}</span>
           </button>
         ))}
