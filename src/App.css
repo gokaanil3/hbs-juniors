@@ -27,6 +27,162 @@
   z-index: 0;
 }
 
+.welcome-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(2, 5, 11, 0.78);
+  display: grid;
+  place-items: center;
+  padding: 18px;
+}
+
+.welcome-popup {
+  width: min(680px, 100%);
+  background: linear-gradient(160deg, rgba(17, 24, 40, 0.96), rgba(25, 35, 58, 0.96));
+  border: 2px solid #41528a;
+  border-radius: 20px;
+  padding: 34px 20px 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 0 2px rgba(143, 123, 255, 0.3), 0 14px 40px rgba(0, 0, 0, 0.45);
+}
+
+.welcome-popup h2 {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(1.5rem, 5.8vw, 2.5rem);
+  line-height: 1.2;
+  letter-spacing: 0.6px;
+  font-family: 'Trebuchet MS', 'Segoe UI', Tahoma, sans-serif;
+  position: relative;
+  z-index: 2;
+}
+
+.welcome-popup p {
+  margin: 12px 0 18px;
+  color: #d6e3ff;
+  font-size: clamp(0.95rem, 3.8vw, 1.1rem);
+  position: relative;
+  z-index: 2;
+}
+
+.welcome-popup button {
+  border: none;
+  background: linear-gradient(90deg, #8f7bff, #39f3e2);
+  color: #ffffff;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 11px 22px;
+  cursor: pointer;
+  font-size: 1rem;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  animation: buttonPulse 2.1s ease-in-out infinite;
+}
+
+.welcome-popup button:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 0 0 2px rgba(57, 243, 226, 0.35), 0 0 22px rgba(143, 123, 255, 0.45);
+}
+
+.welcome-balloons {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.welcome-balloon {
+  position: absolute;
+  width: 18px;
+  height: 24px;
+  border-radius: 50% 50% 45% 45%;
+  opacity: 0.9;
+  animation: welcomeFloat 5.2s ease-in-out infinite;
+}
+
+.welcome-balloon::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 1.5px;
+  height: 24px;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.38);
+}
+
+.balloon-a {
+  left: 12%;
+  bottom: 16%;
+  background: #8f7bff;
+  animation-delay: 0s;
+}
+
+.balloon-b {
+  left: 24%;
+  bottom: 12%;
+  background: #39f3e2;
+  animation-delay: 0.5s;
+}
+
+.balloon-c {
+  right: 20%;
+  bottom: 14%;
+  background: #ff44cf;
+  animation-delay: 1s;
+}
+
+.balloon-d {
+  right: 10%;
+  bottom: 16%;
+  background: #6fd1ff;
+  animation-delay: 1.5s;
+}
+
+.welcome-fireworks {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.spark {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow:
+    0 0 0 6px rgba(143, 123, 255, 0.25),
+    0 0 0 14px rgba(57, 243, 226, 0.16);
+  animation: fireworkBurst 1.6s ease-out infinite;
+}
+
+.spark-1 {
+  top: 14%;
+  left: 18%;
+}
+
+.spark-2 {
+  top: 18%;
+  right: 22%;
+  animation-delay: 0.4s;
+}
+
+.spark-3 {
+  top: 36%;
+  left: 10%;
+  animation-delay: 0.8s;
+}
+
+.spark-4 {
+  top: 38%;
+  right: 12%;
+  animation-delay: 1.2s;
+}
+
 .bubble {
   position: absolute;
   border-radius: 50%;
@@ -561,6 +717,31 @@ button:active,
   100% {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+@keyframes welcomeFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+@keyframes fireworkBurst {
+  0% {
+    transform: scale(0.2);
+    opacity: 0;
+  }
+  25% {
+    transform: scale(0.95);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.45);
+    opacity: 0;
   }
 }
 

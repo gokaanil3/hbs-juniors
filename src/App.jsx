@@ -1,5 +1,5 @@
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import image1 from './assets/image1.jpg'
 import './App.css'
 
@@ -237,10 +237,47 @@ function PresentationPage() {
   )
 }
 
+function WelcomePopup({ onClose }) {
+  return (
+    <div className="welcome-overlay" role="dialog" aria-modal="true" aria-label="Welcome message">
+      <div className="welcome-popup">
+        <div className="welcome-fireworks" aria-hidden="true">
+          <span className="spark spark-1" />
+          <span className="spark spark-2" />
+          <span className="spark spark-3" />
+          <span className="spark spark-4" />
+        </div>
+
+        <div className="welcome-balloons" aria-hidden="true">
+          <span className="welcome-balloon balloon-a" />
+          <span className="welcome-balloon balloon-b" />
+          <span className="welcome-balloon balloon-c" />
+          <span className="welcome-balloon balloon-d" />
+        </div>
+
+        <h2>Hey Judges We are Excited to meet you!</h2>
+        <p>Welcome to HBS Juniors.</p>
+        <button onClick={onClose}>Open Website</button>
+      </div>
+    </div>
+  )
+}
+
 function App() {
+  const [showWelcome, setShowWelcome] = useState(false)
+
+  useEffect(() => {
+    const hasSeenPopup = sessionStorage.getItem('hbs-juniors-welcome-seen')
+    if (!hasSeenPopup) {
+      setShowWelcome(true)
+      sessionStorage.setItem('hbs-juniors-welcome-seen', 'true')
+    }
+  }, [])
+
   return (
     <BrowserRouter>
       <div className="app-shell">
+        {showWelcome && <WelcomePopup onClose={() => setShowWelcome(false)} />}
         <div className="playful-bg" aria-hidden="true">
           <span className="bubble bubble-1" />
           <span className="bubble bubble-2" />
