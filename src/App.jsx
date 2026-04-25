@@ -1,6 +1,6 @@
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom'
 import { useEffect, useMemo, useState } from 'react'
-import image1 from './assets/image1.jpg'
+import image1 from './assets/image1.jpeg'
 import './App.css'
 
 // Replace these URLs with your real custom photos anytime.
@@ -8,39 +8,39 @@ const HERO_IMAGE_URL = image1
 
 const CUSTOM_DAY_PHOTOS = [
   [
-    'https://picsum.photos/seed/day1-photo1/900/550',
-    'https://picsum.photos/seed/day1-photo2/900/550',
-    'https://picsum.photos/seed/day1-photo3/900/550',
-    'https://picsum.photos/seed/day1-photo4/900/550',
-    'https://picsum.photos/seed/day1-photo5/900/550',
+    '/src/assets/Day 1-1.jpeg',
+    '/src/assets/Day 1-2.jpeg',
+    '/src/assets/Day 1-3.jpeg',
+    '/src/assets/Day 1-4.jpeg',
+    '/src/assets/Day 1-5.jpeg',
   ],
   [
-    'https://picsum.photos/seed/day2-photo1/900/550',
-    'https://picsum.photos/seed/day2-photo2/900/550',
-    'https://picsum.photos/seed/day2-photo3/900/550',
-    'https://picsum.photos/seed/day2-photo4/900/550',
-    'https://picsum.photos/seed/day2-photo5/900/550',
+    '/src/assets/Day 2-1.jpeg',
+    '/src/assets/Day 2-2.jpeg',
+    '/src/assets/Day 2-3.jpeg',
+    '/src/assets/Day 2-4.jpeg',
+    '/src/assets/Day 2-5.jpeg',
   ],
   [
-    'https://picsum.photos/seed/day3-photo1/900/550',
-    'https://picsum.photos/seed/day3-photo2/900/550',
-    'https://picsum.photos/seed/day3-photo3/900/550',
-    'https://picsum.photos/seed/day3-photo4/900/550',
-    'https://picsum.photos/seed/day3-photo5/900/550',
+    '/src/assets/Day 3-1.jpeg',
+    '/src/assets/Day 3-2.jpeg',
+    '/src/assets/Day 3-3.jpeg',
+    '/src/assets/Day 3-4.jpeg',
+    '/src/assets/Day 3-5.jpeg',
   ],
   [
-    'https://picsum.photos/seed/day4-photo1/900/550',
-    'https://picsum.photos/seed/day4-photo2/900/550',
-    'https://picsum.photos/seed/day4-photo3/900/550',
-    'https://picsum.photos/seed/day4-photo4/900/550',
-    'https://picsum.photos/seed/day4-photo5/900/550',
+    '/src/assets/Day 4-1.jpeg',
+    '/src/assets/Day 4-2.jpeg',
+    '/src/assets/Day 4-3.jpeg',
+    '/src/assets/Day 4-4.jpeg',
+    '/src/assets/Day 4-5.jpeg',
   ],
   [
-    'https://picsum.photos/seed/day5-photo1/900/550',
-    'https://picsum.photos/seed/day5-photo2/900/550',
-    'https://picsum.photos/seed/day5-photo3/900/550',
-    'https://picsum.photos/seed/day5-photo4/900/550',
-    'https://picsum.photos/seed/day5-photo5/900/550',
+    '/src/assets/Day 5-1.jpeg',
+    '/src/assets/Day 5-2.jpeg',
+    '/src/assets/Day 5-3.jpeg',
+    '/src/assets/Day 5-4.jpeg',
+    '/src/assets/Day 5-5.jpeg',
   ],
 ]
 
