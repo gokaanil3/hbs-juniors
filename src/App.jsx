@@ -1,31 +1,6 @@
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom'
 import { useEffect, useMemo, useState } from 'react'
 import image1 from './assets/image1.jpeg'
-import day1_1 from './assets/Day 1-1.jpeg'
-import day1_2 from './assets/Day 1-2.jpeg'
-import day1_3 from './assets/Day 1-3.jpeg'
-import day1_4 from './assets/Day 1-4.jpeg'
-import day1_5 from './assets/Day 1-5.jpeg'
-import day2_1 from './assets/Day 2-1.jpeg'
-import day2_2 from './assets/Day 2-2.jpeg'
-import day2_3 from './assets/Day 2-3.jpeg'
-import day2_4 from './assets/Day 2-4.jpeg'
-import day2_5 from './assets/Day 2-5.jpeg'
-import day3_1 from './assets/Day 3-1.jpeg'
-import day3_2 from './assets/Day 3-2.jpeg'
-import day3_3 from './assets/Day 3-3.jpeg'
-import day3_4 from './assets/Day 3-4.jpeg'
-import day3_5 from './assets/Day 3-5.jpeg'
-import day4_1 from './assets/Day 4-1.jpeg'
-import day4_2 from './assets/Day 4-2.jpeg'
-import day4_3 from './assets/Day 4-3.jpeg'
-import day4_4 from './assets/Day 4-4.jpeg'
-import day4_5 from './assets/Day 4-5.jpeg'
-import day5_1 from './assets/Day 5-1.jpeg'
-import day5_2 from './assets/Day 5-2.jpeg'
-import day5_3 from './assets/Day 5-3.jpeg'
-import day5_4 from './assets/Day 5-4.jpeg'
-import day5_5 from './assets/Day 5-5.jpeg'
 import './App.css'
 
 // Replace these URLs with your real custom photos anytime.
@@ -33,39 +8,39 @@ const HERO_IMAGE_URL = image1
 
 const CUSTOM_DAY_PHOTOS = [
   [
-    day1_1,
-    day1_2,
-    day1_3,
-    day1_4,
-    day1_5,
+    'src/assets/Day 1-1.jpeg',
+    'src/assets/Day 1-2.jpeg',
+    'src/assets/Day 1-3.jpeg',
+    'src/assets/Day 1-4.jpeg',
+    'src/assets/Day 1-5.jpeg',
   ],
   [
-    day2_1,
-    day2_2,
-    day2_3,
-    day2_4,
-    day2_5,
+    'src/assets/Day 2-1.jpeg',
+    'src/assets/Day 2-2.jpeg',
+    'src/assets/Day 2-3.jpeg',
+    'src/assets/Day 2-4.jpeg',
+    'src/assets/Day 2-5.jpeg',
   ],
   [
-    day3_1,
-    day3_2,
-    day3_3,
-    day3_4,
-    day3_5,
+    'src/assets/Day 3-1.jpeg',
+    'src/assets/Day 3-2.jpeg',
+    'src/assets/Day 3-3.jpeg',
+    'src/assets/Day 3-4.jpeg',
+    'src/assets/Day 3-5.jpeg',
   ],
   [
-    day4_1,
-    day4_2,
-    day4_3,
-    day4_4,
-    day4_5,
+    'src/assets/Day 4-1.jpeg',
+    'src/assets/Day 4-2.jpeg',
+    'src/assets/Day 4-3.jpeg',
+    'src/assets/Day 4-4.jpeg',
+    'src/assets/Day 4-5.jpeg',
   ],
   [
-    day5_1,
-    day5_2,
-    day5_3,
-    day5_4,
-    day5_5,
+    'src/assets/Day 5-1.jpeg',
+    'src/assets/Day 5-2.jpeg',
+    'src/assets/Day 5-3.jpeg',
+    'src/assets/Day 5-4.jpeg',
+    'src/assets/Day 5-5.jpeg',
   ],
 ]
 
@@ -127,6 +102,7 @@ function DaysPage() {
   const [activeDay, setActiveDay] = useState(null)
   const [currentIndex, setCurrentIndex] = useState(0)
   const [touchStartX, setTouchStartX] = useState(null)
+  const [isFullscreen, setIsFullscreen] = useState(false)
 
   const dayPhotos = useMemo(
     () =>
@@ -195,7 +171,7 @@ function DaysPage() {
           )}
         </div>
 
-        <div className="day-gallery-box" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+        <div className="day-gallery-box" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd} onClick={() => activeDay !== null && setIsFullscreen(true)}>
           <img
             src={activeDay === null ? dayPhotos[0].photos[0] : activePhotos[currentIndex]}
             alt={activeDay === null ? 'Gift wrapped main gallery' : `${dayPhotos[activeDay].name} activity ${currentIndex + 1}`}
@@ -227,6 +203,18 @@ function DaysPage() {
           </button>
         ))}
       </section>
+
+      {isFullscreen && activeDay !== null && (
+        <div className="fullscreen-modal" onClick={() => setIsFullscreen(false)}>
+          <button className="fullscreen-close" onClick={() => setIsFullscreen(false)}>✕</button>
+          <img src={activePhotos[currentIndex]} alt="Fullscreen view" />
+          <div className="fullscreen-controls">
+            <button onClick={(e) => { e.stopPropagation(); goPrev(); }}>←</button>
+            <span>{currentIndex + 1} / {activePhotos.length}</span>
+            <button onClick={(e) => { e.stopPropagation(); goNext(); }}>→</button>
+          </div>
+        </div>
+      )}
     </main>
   )
 }
