@@ -1,16 +1,16 @@
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom'
 import { useEffect, useMemo, useState } from 'react'
 import image1 from './assets/image1.jpeg'
-import day11 from './assets/Day1-1.jpeg'
-import day12 from './assets/Day1-2.jpeg'
-import day13 from './assets/Day1-3.jpeg'
-import day14 from './assets/Day1-4.jpeg'
-import day15 from './assets/Day1-5.jpeg'
-import day21 from './assets/Day2-1.jpeg'
-import day22 from './assets/Day2-2.jpeg'
-import day23 from './assets/Day2-3.jpeg'
-import day24 from './assets/Day2-4.jpeg'
-import day25 from './assets/Day2-5.jpeg'
+import day11 from './assets/Day 1-1.jpeg'
+import day12 from './assets/Day 1-2.jpeg'
+import day13 from './assets/Day 1-3.jpeg'
+import day14 from './assets/Day 1-4.jpeg'
+import day15 from './assets/Day 1-5.jpeg'
+import day21 from './assets/Day 2-1.jpeg'
+import day22 from './assets/Day 2-2.jpeg'
+import day23 from './assets/Day 2-3.jpeg'
+import day24 from './assets/Day 2-4.jpeg'
+import day25 from './assets/Day 2-5.jpeg'
 import './App.css'
 
 // Replace these URLs with your real custom photos anytime.
@@ -44,13 +44,6 @@ const CUSTOM_DAY_PHOTOS = [
     'src/assets/Day 4-3.jpeg',
     'src/assets/Day 4-4.jpeg',
     'src/assets/Day 4-5.jpeg',
-  ],
-  [
-    'src/assets/Day 5-1.jpeg',
-    'src/assets/Day 5-2.jpeg',
-    'src/assets/Day 5-3.jpeg',
-    'src/assets/Day 5-4.jpeg',
-    'src/assets/Day 5-5.jpeg',
   ],
 ]
 
@@ -116,7 +109,7 @@ function DaysPage() {
 
   const dayPhotos = useMemo(
     () =>
-      Array.from({ length: 5 }, (_, day) => ({
+      Array.from({ length: 4 }, (_, day) => ({
         name: `Day ${day + 1}`,
         photos: CUSTOM_DAY_PHOTOS[day],
       })),
