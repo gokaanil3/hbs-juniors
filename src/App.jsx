@@ -8,8 +8,8 @@ const HERO_IMAGE_URL = image1
 
 const CUSTOM_DAY_PHOTOS = [
   [
-    'src/assets/Day 1-1.jpeg',
-    'src/assets/Day 1-2.jpeg',
+    'src\assets\Day 1-1.jpeg',
+    'src\assets\Day 1-2.jpeg',
     'src/assets/Day 1-3.jpeg',
     'src/assets/Day 1-4.jpeg',
     'src/assets/Day 1-5.jpeg',
