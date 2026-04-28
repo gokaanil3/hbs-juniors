@@ -611,8 +611,9 @@
   box-shadow: 0 0 0 2px rgba(57, 215, 201, 0.24);
 }
 
-.video-list {
+.video-grid {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 18px;
   margin-top: 24px;
 }
@@ -623,11 +624,30 @@
   border-radius: 16px;
   padding: 16px;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
 }
 
 .video-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.34);
+}
+
+.video-player {
+  width: 100%;
+  border-radius: 8px;
+  display: block;
+}
+
+.video-label {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: bold;
 }
 
 .video-tab.active {
