@@ -1,5 +1,5 @@
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import image1 from './assets/image1.jpeg'
 import day11 from './assets/Day1-1.jpeg'
 import day12 from './assets/Day1-2.jpeg'
@@ -232,39 +232,27 @@ function DaysPage() {
 }
 
 function PresentationPage() {
-  const videoRefs = useMemo(() => CUSTOM_VIDEO_URLS.map(() => useRef(null)), [])
-
-  const handleMouseEnter = (index) => {
-    if (videoRefs[index].current) {
-      videoRefs[index].current.play()
-    }
-  }
-
-  const handleMouseLeave = (index) => {
-    if (videoRefs[index].current) {
-      videoRefs[index].current.pause()
-    }
-  }
+  const [activeVideo, setActiveVideo] = useState(0)
 
   return (
     <main className="page presentation-page">
       <h1>We want you to See a Presentation</h1>
 
-      <section className="video-grid">
+      <section className="video-list">
         {CUSTOM_VIDEO_URLS.map((src, index) => (
           <div key={src} className="video-card">
-            <video
-              ref={videoRefs[index]}
-              className="video-player"
-              muted
-              loop
-              onMouseEnter={() => handleMouseEnter(index)}
-              onMouseLeave={() => handleMouseLeave(index)}
+            <button
+              className={`video-tab ${activeVideo === index ? 'active' : ''}`}
+              onClick={() => setActiveVideo(index)}
             >
-              <source src={src} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-            <div className="video-label">VID {index + 1}</div>
+              VID {index + 1}
+            </button>
+            {activeVideo === index && (
+              <video controls className="video-player">
+                <source src={src} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            )}
           </div>
         ))}
       </section>
