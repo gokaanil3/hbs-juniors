@@ -1,16 +1,29 @@
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom'
 import { useEffect, useMemo, useState } from 'react'
 import image1 from './assets/image1.jpeg'
-import day11 from './assets/Day 1-1.jpeg'
-import day12 from './assets/Day 1-2.jpeg'
-import day13 from './assets/Day 1-3.jpeg'
-import day14 from './assets/Day 1-4.jpeg'
-import day15 from './assets/Day 1-5.jpeg'
-import day21 from './assets/Day 2-1.jpeg'
-import day22 from './assets/Day 2-2.jpeg'
-import day23 from './assets/Day 2-3.jpeg'
-import day24 from './assets/Day 2-4.jpeg'
-import day25 from './assets/Day 2-5.jpeg'
+import day11 from './assets/Day1-1.jpeg'
+import day12 from './assets/Day1-2.jpeg'
+import day13 from './assets/Day1-3.jpeg'
+import day14 from './assets/Day1-4.jpeg'
+import day15 from './assets/Day1-5.jpeg'
+import day21 from './assets/Day2-1.jpeg'
+import day22 from './assets/Day2-2.jpeg'
+import day23 from './assets/Day2-3.jpeg'
+import day24 from './assets/Day2-4.jpeg'
+import day25 from './assets/Day2-5.jpeg'
+import day31 from './assets/Day3-1.jpeg'
+import day32 from './assets/Day3-2.jpeg'
+import day33 from './assets/Day3-3.jpeg'
+import day34 from './assets/Day3-4.jpeg'
+import day35 from './assets/Day3-5.jpeg'
+import day41 from './assets/Day4-1.jpeg'
+import day42 from './assets/Day4-2.jpeg'
+import day43 from './assets/Day4-3.jpeg'
+import day44 from './assets/Day4-4.jpeg'
+import day45 from './assets/Day4-5.jpeg'
+import vid1 from './assets/VID 1.mp4'
+import vid2 from './assets/VID 2.mp4'
+import vid3 from './assets/VID 3.mp4'
 import './App.css'
 
 // Replace these URLs with your real custom photos anytime.
@@ -22,35 +35,31 @@ const CUSTOM_DAY_PHOTOS = [
     day12,
     day13,
     day14,
-    day15,
   ],
   [
     day21,
     day22,
     day23,
     day24,
-    day25,
   ],
   [
-    'src/assets/Day 3-1.jpeg',
-    'src/assets/Day 3-2.jpeg',
-    'src/assets/Day 3-3.jpeg',
-    'src/assets/Day 3-4.jpeg',
-    'src/assets/Day 3-5.jpeg',
+    day31,
+    day32,
+    day33,
+    day34,
   ],
   [
-    'src/assets/Day 4-1.jpeg',
-    'src/assets/Day 4-2.jpeg',
-    'src/assets/Day 4-3.jpeg',
-    'src/assets/Day 4-4.jpeg',
-    'src/assets/Day 4-5.jpeg',
+    day41,
+    day42,
+    day43,
+    day44,
   ],
 ]
 
 const CUSTOM_VIDEO_URLS = [
-  'https://www.w3schools.com/html/mov_bbb.mp4',
-  'https://www.w3schools.com/html/movie.mp4',
-  'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+  vid1,
+  vid2,
+  vid3,
 ]
 
 function Navbar() {
@@ -182,7 +191,7 @@ function DaysPage() {
           {activeDay === null && (
             <div className="main-gift-wrap">
               <span>Gift Wrapped Gallery</span>
-              <small>Press Day 1 / Day 2 / Day 3 / Day 4 / Day 5 to open</small>
+              <small>Press Day 1 / Day 2 / Day 3 / Day 4 to open</small>
             </div>
           )}
         </div>
@@ -236,7 +245,7 @@ function PresentationPage() {
               className={`video-tab ${activeVideo === index ? 'active' : ''}`}
               onClick={() => setActiveVideo(index)}
             >
-              Video {index + 1}
+              VID {index + 1}
             </button>
             {activeVideo === index && (
               <video controls className="video-player">
